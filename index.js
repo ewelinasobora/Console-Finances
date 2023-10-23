@@ -125,5 +125,6 @@ console.log("Total Months: " + totalMonths);
 console.log("Total: $" + total)
 console.log("Average Change: $" + averageChange);
 
-console.log("Greatest Increase: " + greatestIncrease.date + " $(" + greatestIncrease.amount + ")");
-console.log("Greatest Decrease: " + greatestDecrease.date + " $(" + greatestDecrease.amount + ")");
+console.log(`Greatest Increase: ${greatestIncrease.date} $${greatestIncrease.amount}`);
+console.log(`Greatest Decrease: ${greatestDecrease.date} $${greatestDecrease.amount}`);
+
