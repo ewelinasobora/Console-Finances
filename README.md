@@ -2,6 +2,8 @@
 
 This is a simple JavaScript app for financial analysis.
 
+![Screenshot 2023-10-24 at 17 10 25](https://github.com/ewelinasobora/Console-Finances/assets/11948354/8c45059b-9e45-4147-b034-57f10735dc28)
+
 ## Table of Contents
 
 - [Demo](#demo)
