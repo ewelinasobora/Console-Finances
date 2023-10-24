@@ -12,7 +12,7 @@ This is a simple JavaScript app for financial analysis.
 
 ## Demo
 
-You can see this deployed project [here](https://ewelinasobora.github.io/code-crafted-portfolio/).
+You can see this deployed project [here](https://ewelinasobora.github.io/Console-Finances/).
 
 ## Features
 
