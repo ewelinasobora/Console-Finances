@@ -1,4 +1,4 @@
-var finances = [
+const finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
   ['Mar-2010', 322013],
@@ -87,25 +87,25 @@ var finances = [
   ['Feb-2017', 671099]
 ];
 
-var totalMonths = finances.length;
+const totalMonths = finances.length;
 
-var total = 0;
-var totalChange = 0;
-var greatestIncrease = { date: "", amount: 0 };
-var greatestDecrease = { date: "", amount: 0 };
+let total = 0;
+let totalChange = 0;
+const greatestIncrease = { date: "", amount: 0 };
+const greatestDecrease = { date: "", amount: 0 };
 
-for (var i = 1; i < totalMonths; i++) {
-  var currentEntry = finances[i];
-  var previousEntry = finances[i - 1];
-  var currentAmount = currentEntry[1];
-  var previousAmount = previousEntry[1];
+for (let i = 1; i < totalMonths; i++) {
+  const currentEntry = finances[i];
+  const previousEntry = finances[i - 1];
+  const currentAmount = currentEntry[1];
+  const previousAmount = previousEntry[1];
 
-  total += currentAmount
+  total += currentAmount;
   totalChange += currentAmount - previousAmount;
 
-  var increase = 0;
-  var decrease = 0;
-  increase += currentAmount - previousAmount
+  let increase = 0;
+  let decrease = 0;
+  increase += currentAmount - previousAmount;
   decrease -= previousAmount - currentAmount;
 
   if (increase > greatestIncrease.amount) {
@@ -118,7 +118,7 @@ for (var i = 1; i < totalMonths; i++) {
 }
 
 total += finances[0][1]
-var averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
+const averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
 
 console.log("Financial Analysis\n---------------------------")
 console.log("Total Months: " + totalMonths);
