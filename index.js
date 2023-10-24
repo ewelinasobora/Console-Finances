@@ -1,3 +1,75 @@
+class financialAnalysis {
+  constructor(finances) {
+    this.totalMonths = finances.length;
+    this.getFinancialData = this.getFinancialDict(finances);
+    this.greatestIncrease = { date: "", amount: 0 };
+    this.greatestDecrease = { date: "", amount: 0 };
+  }
+
+  getFinancialDict(finances) {
+    let financialDict = [];
+
+    for (let i = 0; i < this.totalMonths; i++) {
+      financialDict.push({ date: finances[i][0], amount: finances[i][1] });
+    }
+    return financialDict;
+  }
+
+  getTotalAmount() {
+    let sum = 0;
+
+    for (let i = 0; i < this.totalMonths; i++) {
+      sum += this.getFinancialData[i].amount;
+    }
+    return sum;
+  }
+
+  calculateTotalChange() {
+    let totalChange = 0;
+
+    for (let i = 1; i < this.totalMonths; i++) {
+      const change = this.getFinancialData[i].amount - this.getFinancialData[i - 1].amount;
+      this.totalChange += change;
+    }
+    return totalChange;
+  }
+
+  getTotalChange() {
+    let totalChange = 0;
+
+    for (let i = 1; i < this.totalMonths; i++) {
+      let currentMonthAmount = this.getFinancialData[i].amount;
+      let previousMonthAmount = this.getFinancialData[i - 1].amount;
+
+      const change = currentMonthAmount - previousMonthAmount;
+      totalChange += change;
+
+      this.getGreatestChange(change, this.getFinancialData[i].date);
+    }
+
+    return totalChange;
+  }
+
+  getAverageChange() {
+    const months = this.totalMonths - 1;
+
+    return (this.getTotalChange() / months).toFixed(2);
+  }
+
+  getGreatestChange(change, date) {
+    let increase = this.greatestIncrease;
+    let decrease = this.greatestDecrease;
+
+    if (change > increase.amount) {
+      increase.date = date;
+      increase.amount = change;
+    } else if (change < decrease.amount) {
+      decrease.date = date;
+      decrease.amount = change;
+    }
+  }
+}
+
 const finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
@@ -87,44 +159,12 @@ const finances = [
   ['Feb-2017', 671099]
 ];
 
-const totalMonths = finances.length;
+const analysis = new financialAnalysis(finances);
 
-let total = 0;
-let totalChange = 0;
-const greatestIncrease = { date: "", amount: 0 };
-const greatestDecrease = { date: "", amount: 0 };
-
-for (let i = 1; i < totalMonths; i++) {
-  const currentEntry = finances[i];
-  const previousEntry = finances[i - 1];
-  const currentAmount = currentEntry[1];
-  const previousAmount = previousEntry[1];
-
-  total += currentAmount;
-  totalChange += currentAmount - previousAmount;
-
-  let increase = 0;
-  let decrease = 0;
-  increase += currentAmount - previousAmount;
-  decrease -= previousAmount - currentAmount;
-
-  if (increase > greatestIncrease.amount) {
-    greatestIncrease.date = currentEntry[0];
-    greatestIncrease.amount = increase;
-  } else if (decrease < greatestDecrease.amount) {
-    greatestDecrease.date = currentEntry[0];
-    greatestDecrease.amount = decrease;
-  }
-}
-
-total += finances[0][1]
-const averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
-
-console.log("Financial Analysis\n---------------------------")
-console.log("Total Months: " + totalMonths);
-console.log("Total: $" + total)
-console.log("Average Change: $" + averageChange);
-
-console.log(`Greatest Increase: ${greatestIncrease.date} $${greatestIncrease.amount}`);
-console.log(`Greatest Decrease: ${greatestDecrease.date} $${greatestDecrease.amount}`);
+console.log("Financial Analysis\n---------------------------");
+console.log("Total Months: " + analysis.totalMonths);
+console.log("Total: $" + analysis.getTotalAmount());
+console.log("Average Change: $" + analysis.getAverageChange());
+console.log(`Greatest Increase: ${analysis.greatestIncrease.date} $${analysis.greatestIncrease.amount}`);
+console.log(`Greatest Decrease: ${analysis.greatestDecrease.date} $${analysis.greatestDecrease.amount}`);
 
