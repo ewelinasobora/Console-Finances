@@ -160,11 +160,26 @@ const finances = [
 ];
 
 const analysis = new financialAnalysis(finances);
+const totalMonths = analysis.totalMonths;
+const total = analysis.getTotalAmount();
+const averageChange = analysis.getAverageChange();
+const greatestIncreaseDate = analysis.greatestIncrease.date;
+const greatestIncreaseAmount = analysis.greatestIncrease.amount;
+const greatestDecreaseDate = analysis.greatestDecrease.date;
+const greatestDecreaseAmount = analysis.greatestDecrease.amount;
+
+document.getElementById("totalMonths").textContent = totalMonths;
+document.getElementById("total").textContent = total;
+document.getElementById("averageChange").textContent = averageChange;
+document.getElementById("greatestIncreaseDate").textContent = greatestIncreaseDate;
+document.getElementById("greatestIncreaseAmount").textContent =  greatestIncreaseAmount;
+document.getElementById("greatestDecreaseDate").textContent = greatestDecreaseDate;
+document.getElementById("greatestDecreaseAmount").textContent = greatestDecreaseAmount;
 
 console.log("Financial Analysis\n---------------------------");
-console.log("Total Months: " + analysis.totalMonths);
-console.log("Total: $" + analysis.getTotalAmount());
-console.log("Average Change: $" + analysis.getAverageChange());
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + total);
+console.log("Average Change: $" + averageChange);
 console.log(`Greatest Increase: ${analysis.greatestIncrease.date} $${analysis.greatestIncrease.amount}`);
 console.log(`Greatest Decrease: ${analysis.greatestDecrease.date} $${analysis.greatestDecrease.amount}`);
 
